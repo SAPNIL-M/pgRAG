@@ -1,0 +1,24 @@
+[project]
+name = "rag-pipe"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "SAPNIL-M", email = "sapnilm670@gmail.com" }
+]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "alembic>=1.20.1",
+    "asyncpg>=0.32.0",
+    "greenlet>=3.5.6",
+    "pgvector>=0.5.1",
+    "pydantic-settings>=2.16.2",
+    "sqlalchemy>=2.1.6",
+]
+
+[project.scripts]
+rag-pipe = "rag_pipe:main"
+
+[build-system]
+requires = ["uv_build>=0.12.10,<0.13.0"]
+build-backend = "uv_build"
