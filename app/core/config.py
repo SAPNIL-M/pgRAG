@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str = "localhost"
     POSTGRES_PORT: int = 5432
     POSTGRES_DB: str = "rag_db"
+    EMBEDDING_MODEL_NAME: str = "sentence-transformers/all-mpnet-base-v2"
 
     model_config = SettingsConfigDict(env_file=".env",extra="ignore")
 
