@@ -1,0 +1,11 @@
+# Decisions
+| Date | Decision | Alternatives considered | Why (my words) |
+|---|---|---|---|
+| 2026-11-03 | Modular layer-based layout (`app/services`, `app/db`, `app/schemas`) | Feature-based layout | Considered a feature-based structure and decided to stick with the layer-based modular layout. |
+| 2026-11-03 | Postgres + pgvector for storage and retrieval | ChromaDB and other dedicated vector databases | Considered ChromaDB and other vector databases, but wanted to try out hybrid search so stuck with Postgres + pgvector. |
+| 2026-11-03 | Two-table relational schema (`Document` and `Chunk`) with `CASCADE` delete | Single-table chunk store / manual orphan deletion | Best choice; considering another alternative would have been dumb because documents and chunks have a parent-child relationship. |
+| 2026-11-03 | SHA-256 file fingerprinting with optional `force_reingest` | Unconditional overwriting or hard erroring on duplicates | Best choice because I wanted to add other documents to this service and try out different things without duplicate chunks. |
+| 2026-11-03 | PyMuPDF (`fitz`) for PDF text extraction | `pypdf` and other parsing libraries | From my research this was the best option for parsing PDFs and most of the RAG community uses it. |
+| 2026-11-04 | Page-bounded 10-sentence window chunking with spaCy sentencizer | Token-based, recursive, or cross-page chunkers | Used to reproduce the baseline. There are various other chunking strategies, and this strategy fails on sentences that continue from one page onto another because chunks are made based on pages. |
+| 2026-11-04 | `all-mpnet-base-v2` locally on GPU (CUDA 12.4) | Other embedding models, CPU inference | Wanted to try things to improve model output, and to see improvement while changing things we had to keep some things constant as a baseline. |
+| 2026-11-06 | `RetrievedChunk` schema returning calculated similarity score (`1 - distance`) | Returning raw distance or plain dictionaries | Wanted to compare the output from this to the ones from my notebook, so I wanted to generate similarity scores. |

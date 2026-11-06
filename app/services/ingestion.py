@@ -29,8 +29,8 @@ async def ingest_pdf (file_path :str | Path ,
 
     #checking if that file_hash matches the existiing file_hash in the database it then 
     # deciding based on the flag whether to reingest it into the db or not 
-    query = select(Document).where(Document.file_hash == file_hash)
-    result = await db.execute(query)
+    sql_query = select(Document).where(Document.file_hash == file_hash)
+    result = await db.execute(sql_query)
     existing_doc = result.scalar_one_or_none()
     if existing_doc :
         if not force_reingest:

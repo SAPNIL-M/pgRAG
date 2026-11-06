@@ -1,0 +1,1 @@
+Read AGENTS.md and PROJECT.md at the repo root and follow them in full.
