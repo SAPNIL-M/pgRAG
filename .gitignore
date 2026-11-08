@@ -1,4 +1,4 @@
-﻿venv/
+venv/
 .venv/
 __pycache__/
 *.pyc
@@ -6,3 +6,5 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 AGENTS.md
+
+*.pdf

@@ -46,5 +46,5 @@ def format_chunks_for_prompt(chunks : list[RetrievedChunk])-> str:
     if not chunks:
         return ""
     blocks=[f"[Page {chunk.page_number}]\n{chunk.text}" for chunk in chunks]
-    formatted_chunk_blocks = "\n\n--\n\n".join(blocks)
+    formatted_chunk_blocks = "\n\n---\n\n".join(blocks)
     return formatted_chunk_blocks

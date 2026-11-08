@@ -11,9 +11,10 @@ from app.services.chunker import chunk_pages
 
 
 async def ingest_pdf (file_path :str | Path ,
-                       db : AsyncSession,
-                         embedding_service : EmbeddingService |None = None,
-                           force_reingest: bool = False)->Document:
+                      db : AsyncSession,
+                      embedding_service : EmbeddingService |None = None,
+                      force_reingest: bool = False,
+                      filename:str | None = None,)->Document:
 
     # setting the path of the pdf
     path = Path(file_path)
@@ -44,7 +45,7 @@ async def ingest_pdf (file_path :str | Path ,
 
 
     # adding to db to get id 
-    doc_db = Document(filename=path.name,file_hash=file_hash,page_count=total_pages)
+    doc_db = Document(filename=filename or path.name,file_hash=file_hash,page_count=total_pages)
     db.add(doc_db)
     await db.flush()
 
